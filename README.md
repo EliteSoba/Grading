@@ -7,3 +7,4 @@ Notes
 =====
  + Does not accept partial credit
  + Grader still has to manually add comments when points are deducted
+ + In the time it took me to write this, my submissions_v2 clone still hasn't completed
