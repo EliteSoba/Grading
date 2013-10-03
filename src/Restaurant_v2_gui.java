@@ -242,6 +242,7 @@ public class Restaurant_v2_gui extends JFrame implements ActionListener {
 						output += "  + (" + deduc.get(i).pointCur + " points) " + deduc.get(i).getDescription() + "\n";
 				output += "\n";
 			}
+			output += "Other Notes:\n\n";
 			output += ">Although you may be getting this message via email, it is an issue on issue on your private GitHub repository and you should interact with it on GitHub\n\n"
 					+ ">Any and all discussions pertaining to this deduction **must** be done via comments on this issue. If you are statisfied with the grading, you **must** close the issue. Note that a closed issue implicitly signals that you do not want to discuss this any further. No emails are accepted.\n\n"
 					+ ">You have until Oct 9th, 2013 to dispute this deduction. Please allow up to 72 hours for a response to a regrade request. You are expected to follow the _Grading Disputes_ policies outlined in the [course syllabus](http://www-scf.usc.edu/~csci201/syllabus.html).";
