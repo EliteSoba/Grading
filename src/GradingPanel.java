@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.event.*;
 
 import java.awt.*;
 import java.awt.color.ColorSpace;
@@ -11,13 +12,20 @@ public class GradingPanel extends JPanel {
 	JScrollPane content;
 	JPanel main;
 	
-	private class GradingButton implements ActionListener{
+	private class GradingButton implements ActionListener, DocumentListener{
 		JButton button;
 		Item item;
+		JTextField score;
+		JLabel total;
 		public GradingButton(Item i) {
 			item = i;
-			button = new JButton(item.getDescription());
+			button = new JButton("<html><center>"+item.getDescription()+"</center></html>");
 			button.addActionListener(this);
+			score = new JTextField(2);
+			score.setText(""+item.getPointCur());
+			score.setEditable(false);
+			score.getDocument().addDocumentListener(this);
+			total = new JLabel("/" + i.getPointMax());
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
@@ -25,19 +33,61 @@ public class GradingPanel extends JPanel {
 				if (button.getForeground().equals(Color.red)) {
 					item.setPointCur(0 > item.getPointMax() ? 0 : item.getPointMax());
 					button.setForeground(Color.black);
+					score.setText(""+item.getPointCur());
+					score.setEditable(false);
 				}
 				else {
 					item.setPointCur(0 < item.getPointMax() ? 0 : item.getPointMax());
 					button.setForeground(Color.red);
+					score.setText(""+item.getPointCur());
+					score.setEditable(true);
 				}
 			}
 		}
+
+		public void changedUpdate(DocumentEvent arg0) {
+		
+		}
+		
+		public int getScore() {
+			int sc = 0;
+			try {
+				sc = Integer.parseInt(score.getText());
+			}
+			catch (Exception e) {
+				return 0;
+			}
+			if (item.getPointMax() < 0) {
+				if (sc > 0)
+					sc = 0;
+				if (sc < item.getPointMax())
+					sc = item.getPointMax();
+				return sc;
+			}
+			if (sc < 0)
+				sc = 0;
+			if (sc > item.getPointMax())
+				sc = item.getPointMax();
+			return sc;
+		}
+
+		public void insertUpdate(DocumentEvent arg0) {
+			item.setPointCur(getScore());
+		}
+
+		public void removeUpdate(DocumentEvent arg0) {
+			
+		}
 	}
+	
+	GridBagConstraints c;
 	
 	public GradingPanel(String I) {
 		ID = I;
 		main = new JPanel();
-		main.setLayout(new GridLayout(0,1));
+		main.setLayout(new GridBagLayout());
+		c = new GridBagConstraints();
+		c.gridy = 1;
 		content = new JScrollPane(main);
 		add(content);
 		
@@ -50,7 +100,18 @@ public class GradingPanel extends JPanel {
 		Item item = new Item(i.getPointMax(), i.getDescription(), i.getMilestone());
 		GradingButton button = new GradingButton(item);
 		items.add(item);
-		main.add(button.button);
+		c.gridx = 1;
+		c.weightx = .9;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		main.add(button.button, c);
+		c.gridx = 2;
+		c.weightx = .05;
+		c.fill = GridBagConstraints.NONE;
+		main.add(button.score, c);
+		c.gridx = 3;
+		c.weightx = .05;
+		main.add(button.total, c);
+		c.gridy++;
 	}
 	
 //	public void update() {
@@ -66,6 +127,19 @@ public class GradingPanel extends JPanel {
 		for (int i = 0; i < items.size(); i++)
 			total += items.get(i).getPointCur();
 		return total;
+	}
+	
+	public String getErrors() {
+		String errors = "";
+		for (Item i:items) {
+			if (i.getPointMax() > 0 && i.getPointCur() < i.getPointMax()) {
+				errors += ("  + (-" + (i.getPointMax()-i.getPointCur()) + ") - " + i.getDescription()) + "\n";
+			}
+			else if (i.getPointMax() < 0 && i.getPointCur() < 0) {
+				errors += ("  + (-" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
+			}
+		}
+		return errors;
 	}
 	
 	public ArrayList<Item> getItems() {

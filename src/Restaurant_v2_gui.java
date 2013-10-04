@@ -83,7 +83,7 @@ public class Restaurant_v2_gui extends JFrame implements ActionListener {
 		Cust[4] = new Item(1, "Implements a mechanism to choose what to order.", "Cust");
 		Cust[5] = new Item(1, "Messages the Waiter with order choice.", "Cust");
 		Cust[6] = new Item(1, "Handles cooked food delivery and eventually eats food which is managed by a timer.", "Cust");
-		Cust[7] = new Item(1, "Leaves the restaurant and when done eating, informing his Waiter, goes into a state able to be hungry again and start the entire process over.", "Cust");
+		Cust[7] = new Item(1, "Leaves the restaurant and when done eating, informing his Waiter,<br>goes into a state able to be hungry again and start the entire process over.", "Cust");
 		Cust[8] = new Item(4, "Proper implementation of FSM with proper states and events", "Cust");
 		
 		customer = new GradingPanel("Customer");
@@ -117,6 +117,13 @@ public class Restaurant_v2_gui extends JFrame implements ActionListener {
 		content.addTab("Waiter", wait);
 	}
 	
+	private void populateTab(Item[] items, GradingPanel panel) {
+		for (Item i:items)
+			panel.addItem(i);
+		
+		content.addTab(panel.ID, panel);
+	}
+	
 	private void setUpCook() {
 		Item Cook[] = new Item[5];
 		Cook[0] = new Item(1, "Food and Order classes properly created and used.", "Cook");
@@ -137,9 +144,9 @@ public class Restaurant_v2_gui extends JFrame implements ActionListener {
 		Item Anim[] = new Item[11];
 		Anim[0] = new Item(2, "Animation supports at least 3 tables (can be hard-coded).", "Animation");
 		Anim[1] = new Item(3, "Animation supports and shows simultaneous movement for multiple Waiters.", "Animation");
-		Anim[2] = new Item(3, "Ordering: Waiter returns to table to take order. Then waiter either moves offscreen to deliver orders to Cook OR simply sends the cook a message, i.e., doesn't move to the cook.", "Animation");
+		Anim[2] = new Item(3, "Ordering: Waiter returns to table to take order. Then waiter either moves offscreen to deliver orders to Cook<br>OR simply sends the cook a message, i.e., doesn't move to the cook.", "Animation");
 		Anim[3] = new Item(3, "Delivery: Waiter gets order from cook offscreen and delivers food to correct table.", "Animation");
-		Anim[4] = new Item(3, "Implementation of a Waiter creation panel. Please note that if you have hardcoded the creation of waiters, i.e., you don't have a Waiter creation panel, then you can't run several of the required scenarios and will lose additional points.", "Animation");
+		Anim[4] = new Item(3, "Implementation of a Waiter creation panel. Please note that if you have hardcoded the creation of waiters,<br>i.e., you don't have a Waiter creation panel, then you can't run several of the required scenarios and will lose additional points.", "Animation");
 		Anim[5] = new Item(2, "Food is represented with an icon or a text abbreviation (i.e. ST for steak).", "Animation");
 		Anim[6] = new Item(2, "Customer hungry status can be set during Customer creation.", "Animation");
 		Anim[7] = new Item(2, "No \"Magic Numbers\" in code.", "Animation");
@@ -227,19 +234,28 @@ public class Restaurant_v2_gui extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(gen)) {
 			String output = "Your Assignment v2 Submission Received " + getTotal() + " points. The following error(s) were encountered:\n";
-			output += " 1. Milestone.v2.A - " + (20-Dsign.addItems()) + " points were deducted\n"
-					+ (20-Dsign.addItems() == 0 ? "\n" : ("  + error1\n" + "  + error2\n"));
-			output += " 2. Milestone.v2.B - " + (40-host.addItems()-customer.addItems()-wait.addItems()-cook.addItems()) + " points were deducted\n"
-					+ (40-host.addItems()-customer.addItems()-wait.addItems()-cook.addItems() == 0 ? "\n" : ("  + error3\n" + "  + error4\n"));;
-			output += " 3. Milestone.v2.C - " + (35-ani.addItems()-sc.addItems()) + " points were deducted\n"
-					+ (35-ani.addItems()-sc.addItems() == 0 ? "\n" : ("  + error5\n" + "  + error6\n"));
-			output += " 4. Git Usage - " + (5-git.addItems()) + " points were deducted\n"
-					+ (5-git.addItems() == 0 ? "\n" : ("  + error7\n" + "  + error8\n"));
+			output += " 1. Milestone.v2.A - " + (20-Dsign.addItems()) + " points were deducted\n";
+			output += Dsign.getErrors();
+			output += "\n";
+			//		+ (20-Dsign.addItems() == 0 ? "\n" : ("  + error1\n" + "  + error2\n"));
+			output += " 2. Milestone.v2.B - " + (40-host.addItems()-customer.addItems()-wait.addItems()-cook.addItems()) + " points were deducted\n";
+			output += host.getErrors() + customer.getErrors() + wait.getErrors() + cook.getErrors();
+			//		+ (40-host.addItems()-customer.addItems()-wait.addItems()-cook.addItems() == 0 ? "\n" : ("  + error3\n" + "  + error4\n"));;
+			output += "\n";
+			output += " 3. Milestone.v2.C - " + (35-ani.addItems()-sc.addItems()) + " points were deducted\n";
+			output += ani.getErrors() + sc.getErrors();
+			//		+ (35-ani.addItems()-sc.addItems() == 0 ? "\n" : ("  + error5\n" + "  + error6\n"));
+			output += "\n";
+			output += " 4. Git Usage - " + (5-git.addItems()) + " points were deducted\n";
+			//		+ (5-git.addItems() == 0 ? "\n" : ("  + error7\n" + "  + error8\n"));
+			output += git.getErrors();
+			output += "\n";
 			if (deduc.addItems() != 0) {
 				output += "Also, the following deductions were applied\n";
-				for (int i = 0; i < deduc.getItems().size(); i++)
-					if (deduc.get(i).pointCur != 0)
-						output += "  + (" + deduc.get(i).pointCur + " points) " + deduc.get(i).getDescription() + "\n";
+//				for (int i = 0; i < deduc.getItems().size(); i++)
+//					if (deduc.get(i).pointCur != 0)
+//						output += "  + (" + deduc.get(i).pointCur + " points) " + deduc.get(i).getDescription() + "\n";
+				output += deduc.getErrors();
 				output += "\n";
 			}
 			output += "Other Notes:\n\n";
