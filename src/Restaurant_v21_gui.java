@@ -64,15 +64,15 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		Design[1] = new Item(1, "Interaction Diagram includes stuff", "Design");
 		Design[2] = new Item(2, "Host - Full Design of Host", "Host Design");
 		Design[3] = new Item(1, "Host - Good Pseudocode", "Host Design");
-		Design[4] = new Item(2, "Cook - Full Design of Host", "Cook Design");
+		Design[4] = new Item(2, "Cook - Full Design of Cook", "Cook Design");
 		Design[5] = new Item(1, "Cook - Good Pseudocode", "Cook Design");
-		Design[6] = new Item(2, "Customer - Full Design of Host", "Customer Design");
+		Design[6] = new Item(2, "Customer - Full Design of Customer", "Customer Design");
 		Design[7] = new Item(1, "Customer - Good Pseudocode", "Customer Design");
-		Design[8] = new Item(2, "Waiter - Full Design of Host", "Waiter Design");
+		Design[8] = new Item(2, "Waiter - Full Design of Waiter", "Waiter Design");
 		Design[9] = new Item(1, "Waiter - Good Pseudocode", "Waiter Design");
-		Design[10] = new Item(2, "Cashier - Full Design of Host", "Cashier Design");
+		Design[10] = new Item(2, "Cashier - Full Design of Cashier", "Cashier Design");
 		Design[11] = new Item(1, "Cashier - Good Pseudocode", "Cashier Design");
-		Design[12] = new Item(2, "Market - Full Design of Host", "Market Design");
+		Design[12] = new Item(2, "Market - Full Design of Market", "Market Design");
 		Design[13] = new Item(1, "Market - Good Pseudocode", "Market Design");
 
 		Dsign = new GradingPanel("Design");
