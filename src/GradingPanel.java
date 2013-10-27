@@ -17,15 +17,24 @@ public class GradingPanel extends JPanel {
 		Item item;
 		JTextField score;
 		JLabel total;
+		JButton comment;
+		String com;
+		
 		public GradingButton(Item i) {
 			item = i;
 			button = new JButton("<html><center>"+item.getDescription()+"</center></html>");
+			button.setForeground(Color.black);
 			button.addActionListener(this);
 			score = new JTextField(2);
 			score.setText(""+item.getPointCur());
 			score.setEditable(false);
 			score.getDocument().addDocumentListener(this);
 			total = new JLabel("/" + i.getPointMax());
+			
+			com = "";
+			comment = new JButton("Comment");
+			comment.setForeground(Color.gray);
+			comment.addActionListener(this);
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
@@ -41,6 +50,19 @@ public class GradingPanel extends JPanel {
 					button.setForeground(Color.red);
 					score.setText(""+item.getPointCur());
 					score.setEditable(true);
+				}
+			}
+			else if (arg0.getSource().equals(comment)) {
+				com = JOptionPane.showInputDialog("Comment?:", com);
+				if (com != null && !com.isEmpty()) {
+					comment.setForeground(Color.black);
+					comment.setToolTipText(com);
+					item.setComment(com);
+				}
+				else {
+					comment.setForeground(Color.gray);
+					comment.setToolTipText("");
+					item.setComment("");
 				}
 			}
 		}
@@ -101,7 +123,7 @@ public class GradingPanel extends JPanel {
 		GradingButton button = new GradingButton(item);
 		items.add(item);
 		c.gridx = 1;
-		c.weightx = .9;
+		c.weightx = .85;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		main.add(button.button, c);
 		c.gridx = 2;
@@ -111,6 +133,9 @@ public class GradingPanel extends JPanel {
 		c.gridx = 3;
 		c.weightx = .05;
 		main.add(button.total, c);
+		c.gridx = 4;
+		c.weightx = .05;
+		main.add(button.comment, c);
 		c.gridy++;
 	}
 	
@@ -133,10 +158,16 @@ public class GradingPanel extends JPanel {
 		String errors = "";
 		for (Item i:items) {
 			if (i.getPointMax() > 0 && i.getPointCur() < i.getPointMax()) {
-				errors += ("  + (-" + (i.getPointMax()-i.getPointCur()) + ") - " + i.getDescription()) + "\n";
+				if (i.getComment() != null && !i.getComment().isEmpty())
+					errors += ("  + (-" + (i.getPointMax()-i.getPointCur()) + ") - " + i.getDescription() + " - " + i.getComment()) + "\n";
+				else
+					errors += ("  + (-" + (i.getPointMax()-i.getPointCur()) + ") - " + i.getDescription()) + "\n";
 			}
 			else if (i.getPointMax() < 0 && i.getPointCur() < 0) {
-				errors += ("  + (-" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
+				if (i.getComment() != null && !i.getComment().isEmpty())
+					errors += ("  + (-" + i.getPointCur() + " points) - "  + i.getDescription() + " - " + i.getComment() + "\n");
+				else
+					errors += ("  + (-" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
 			}
 		}
 		return errors;

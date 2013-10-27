@@ -62,18 +62,18 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		Item Design[] = new Item[14];
 		Design[0] = new Item(1, "Normative Interaction Diagram", "Design");
 		Design[1] = new Item(1, "Interaction Diagram includes stuff", "Design");
-		Design[2] = new Item(2, "Host - Full Design of Host.", "Host Design");
-		Design[3] = new Item(1, "Host - Good Pseudocode.", "Host Design");
-		Design[4] = new Item(2, "Cook - Full Design of Host.", "Cook Design");
-		Design[5] = new Item(1, "Cook - Good Pseudocode.", "Cook Design");
-		Design[6] = new Item(2, "Customer - Full Design of Host.", "Customer Design");
-		Design[7] = new Item(1, "Customer - Good Pseudocode.", "Customer Design");
-		Design[8] = new Item(2, "Waiter - Full Design of Host.", "Waiter Design");
-		Design[9] = new Item(1, "Waiter - Good Pseudocode.", "Waiter Design");
-		Design[10] = new Item(2, "Cashier - Full Design of Host.", "Cashier Design");
-		Design[11] = new Item(1, "Cashier - Good Pseudocode.", "Cashier Design");
-		Design[12] = new Item(2, "Market - Full Design of Host.", "Market Design");
-		Design[13] = new Item(1, "Market - Good Pseudocode.", "Market Design");
+		Design[2] = new Item(2, "Host - Full Design of Host", "Host Design");
+		Design[3] = new Item(1, "Host - Good Pseudocode", "Host Design");
+		Design[4] = new Item(2, "Cook - Full Design of Host", "Cook Design");
+		Design[5] = new Item(1, "Cook - Good Pseudocode", "Cook Design");
+		Design[6] = new Item(2, "Customer - Full Design of Host", "Customer Design");
+		Design[7] = new Item(1, "Customer - Good Pseudocode", "Customer Design");
+		Design[8] = new Item(2, "Waiter - Full Design of Host", "Waiter Design");
+		Design[9] = new Item(1, "Waiter - Good Pseudocode", "Waiter Design");
+		Design[10] = new Item(2, "Cashier - Full Design of Host", "Cashier Design");
+		Design[11] = new Item(1, "Cashier - Good Pseudocode", "Cashier Design");
+		Design[12] = new Item(2, "Market - Full Design of Host", "Market Design");
+		Design[13] = new Item(1, "Market - Good Pseudocode", "Market Design");
 
 		Dsign = new GradingPanel("Design");
 		populateTab(Design, Dsign);
@@ -94,14 +94,14 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpCust() {
 		Item Cust[] = new Item[8];
-		Cust[0] = new Item(2, "Reorders when original order is out of stock.", "Cust");
+		Cust[0] = new Item(2, "Reorders when original order is out of stock", "Cust");
 		Cust[1] = new Item(2, "Pays cashier after receiving check", "Cust");
-		Cust[2] = new Item(2, "Some customers choose to leave rather than wait when the restaurant is full.", "Cust");
+		Cust[2] = new Item(2, "Some customers choose to leave rather than wait when the restaurant is full", "Cust");
 		Cust[3] = new Item(1, "Customers have a way of keeping track of their money", "Cust");
-		Cust[4] = new Item(1, "Customers who have no money to order anything sometimes choose to leave.", "Cust");
-		Cust[5] = new Item(1, "Customers who have no money to order anything sometimes<br>chooses to order anyway and ends up without enough money to pay.", "Cust");
-		Cust[6] = new Item(2, "Customers who have only enough money to order the cheapest item will only order that cheap item.", "Cust");
-		Cust[7] = new Item(2, "Customers who have only enough money to order the cheapest item will leave if that item is out of stock.", "Cust");
+		Cust[4] = new Item(1, "Customers who have no money to order anything sometimes choose to leave", "Cust");
+		Cust[5] = new Item(1, "Customers who have no money to order anything sometimes<br>chooses to order anyway and ends up without enough money to pay", "Cust");
+		Cust[6] = new Item(2, "Customers who have only enough money to order the cheapest item will only order that cheap item", "Cust");
+		Cust[7] = new Item(2, "Customers who have only enough money to order the cheapest item will leave if that item is out of stock", "Cust");
 
 		customer = new GradingPanel("Customer");
 
@@ -151,9 +151,9 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		Item Cash[] = new Item[5];
 		Cash[0] = new Item(2, "Receives order from waiter at some point", "Cash");
 		Cash[1] = new Item(2, "Creates check", "Cash");
-		Cash[2] = new Item(2, "Gives the waiter the check upon request.", "Cash");
-		Cash[3] = new Item(2, "Lets customer pay the next time he comes to the restaurant.", "Cash");
-		Cash[4] = new Item(2, "Receives money from the customer.", "Cash");
+		Cash[2] = new Item(2, "Gives the waiter the check upon request", "Cash");
+		Cash[3] = new Item(2, "Lets customer pay the next time he comes to the restaurant", "Cash");
+		Cash[4] = new Item(2, "Receives money from the customer", "Cash");
 
 		cash = new GradingPanel("Cash");
 
@@ -184,10 +184,10 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpAnim() {
 		Item Anim[] = new Item[4];
-		Anim[0] = new Item(2, "Functional Waiter On Break button that ensures<br>there is at least one waiter working at all times.", "Animation");
+		Anim[0] = new Item(2, "Functional Waiter On Break button that ensures<br>there is at least one waiter working at all times", "Animation");
 		Anim[1] = new Item(3, "No Customer Money: Can't afford anything on the menu. Customer leaves", "Animation");
 		Anim[2] = new Item(3, "No Customer Money: Restaurant runs out of Customer order, can't afford anything else", "Animation");
-		Anim[3] = new Item(2, "Animation support for Customer leaving after restaurant runs out of your choice.", "Animation");
+		Anim[3] = new Item(2, "Animation support for Customer leaving after restaurant runs out of your choice", "Animation");
 
 		ani = new GradingPanel("Animation");
 
@@ -200,7 +200,7 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 	private void setUpGit() {
 		Item Git[] = new Item[5];
 		Git[0] = new Item(1, "Intermediate commits for the assignment showing progress (at least 5 commits)", "Git");
-		Git[1] = new Item(1, "Final marked commit for submission/grading.", "Git");
+		Git[1] = new Item(1, "Final marked commit for submission/grading", "Git");
 		Git[2] = new Item(1, "Commits - in general - have appropriate, descriptive names", "Git");
 		Git[3] = new Item(2, "README.md contains stuff", "Git");
 		Git[4] = new Item(-5, "Violations of what to do & what not to do in your repository", "Git");
@@ -215,8 +215,8 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpDedu() {
 		Item Dedu[] = new Item[5];
-		Dedu[0] = new Item(-10, "Not using the agent methodology correctly:", "Deductions");
-		Dedu[1] = new Item(-2, "Runtime errors other than concurrent modification errors, which we ignore for now.", "Deductions");
+		Dedu[0] = new Item(-10, "Not using the agent methodology correctly", "Deductions");
+		Dedu[1] = new Item(-2, "Runtime errors other than concurrent modification errors, which we ignore for now", "Deductions");
 		Dedu[2] = new Item(-10, "Missing a lab deadline (for each lab deadline missed)", "Deductions");
 		Dedu[3] = new Item(-5, "GUI is not reasonably sized (components cut off, text unreadable, etc.)", "Deductions");
 		Dedu[4] = new Item(-10, "Program only runs on student's machine", "Deductions");
