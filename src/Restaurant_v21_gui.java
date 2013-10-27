@@ -94,8 +94,8 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpCust() {
 		Item Cust[] = new Item[8];
-		Cust[0] = new Item(2, "Reorders when original order is out of stock", "Cust");
-		Cust[1] = new Item(2, "Pays cashier after receiving check", "Cust");
+		Cust[0] = new Item(2, "Customer reorders when original order is out of stock", "Cust");
+		Cust[1] = new Item(2, "Customer pays cashier after receiving check", "Cust");
 		Cust[2] = new Item(2, "Some customers choose to leave rather than wait when the restaurant is full", "Cust");
 		Cust[3] = new Item(1, "Customers have a way of keeping track of their money", "Cust");
 		Cust[4] = new Item(1, "Customers who have no money to order anything sometimes choose to leave", "Cust");
@@ -113,16 +113,16 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpWait() {
 		Item Wait[] = new Item[10];
-		Wait[0] = new Item(1, "Asks host if break can be taken", "Wait");
-		Wait[1] = new Item(2, "Break can be either accepted or denied", "Wait");
-		Wait[2] = new Item(1, "Goes on break", "Wait");
-		Wait[3] = new Item(2, "Correctly returns to work", "Wait");
-		Wait[4] = new Item(1, "Gets notified when cook is out of food", "Wait");
-		Wait[5] = new Item(1, "Tells customer when Cook is out of food", "Wait");
-		Wait[6] = new Item(1, "Takes customer's order again", "Wait");
-		Wait[7] = new Item(1, "Asks cashier to compute check", "Wait");
-		Wait[8] = new Item(1, "Receives check from cashier", "Wait");
-		Wait[9] = new Item(1, "Gives check to the customer", "Wait");
+		Wait[0] = new Item(1, "Waiter asks host if break can be taken", "Wait");
+		Wait[1] = new Item(2, "Waiter break can be either accepted or denied", "Wait");
+		Wait[2] = new Item(1, "Waiter goes on break", "Wait");
+		Wait[3] = new Item(2, "Waiter correctly returns to work", "Wait");
+		Wait[4] = new Item(1, "Waiter gets notified when cook is out of food", "Wait");
+		Wait[5] = new Item(1, "Waiter tells customer when Cook is out of food", "Wait");
+		Wait[6] = new Item(1, "Waiter takes customer's order again", "Wait");
+		Wait[7] = new Item(1, "Waiter asks cashier to compute check", "Wait");
+		Wait[8] = new Item(1, "Waiter receives check from cashier", "Wait");
+		Wait[9] = new Item(1, "Waiter gives check to the customer", "Wait");
 
 		wait = new GradingPanel("Waiter");
 
@@ -134,10 +134,10 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpCook() {
 		Item Cook[] = new Item[4];
-		Cook[0] = new Item(1, "Checks when inventory is low", "Cook");
-		Cook[1] = new Item(2, "Orders food from market", "Cook");
-		Cook[2] = new Item(1, "Tells waiter customer must reorder", "Cook");
-		Cook[3] = new Item(2, "Has multiple (at least 3) markets to order from", "Cook");
+		Cook[0] = new Item(1, "Cook checks when inventory is low", "Cook");
+		Cook[1] = new Item(2, "Cook orders food from market", "Cook");
+		Cook[2] = new Item(1, "Cook tells waiter customer must reorder", "Cook");
+		Cook[3] = new Item(2, "Cook has multiple (at least 3) markets to order from", "Cook");
 
 		cook = new GradingPanel("Cook");
 
@@ -149,11 +149,11 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpCash() {
 		Item Cash[] = new Item[5];
-		Cash[0] = new Item(2, "Receives order from waiter at some point", "Cash");
-		Cash[1] = new Item(2, "Creates check", "Cash");
-		Cash[2] = new Item(2, "Gives the waiter the check upon request", "Cash");
-		Cash[3] = new Item(2, "Lets customer pay the next time he comes to the restaurant", "Cash");
-		Cash[4] = new Item(2, "Receives money from the customer", "Cash");
+		Cash[0] = new Item(2, "Cashier receives order from waiter at some point", "Cash");
+		Cash[1] = new Item(2, "Cashier creates check", "Cash");
+		Cash[2] = new Item(2, "Cashier gives the waiter the check upon request", "Cash");
+		Cash[3] = new Item(2, "Cashier lets customer pay the next time he comes to the restaurant", "Cash");
+		Cash[4] = new Item(2, "Cashier receives money from the customer", "Cash");
 
 		cash = new GradingPanel("Cash");
 
@@ -166,12 +166,12 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	private void setUpMark() {
 		Item Mark[] = new Item[6];
-		Mark[0] = new Item(1, "Keeps track of inventory", "Mark");
-		Mark[1] = new Item(2, "Receives orders from Cook", "Mark");
-		Mark[2] = new Item(2, "Fulfills Cook's order", "Mark");
-		Mark[3] = new Item(2, "Can run out of food", "Mark");
-		Mark[4] = new Item(2, "Does not restock", "Mark");
-		Mark[5] = new Item(2, "Tells Cook when order cannot be fulfilled", "Mark");
+		Mark[0] = new Item(1, "Market keeps track of inventory", "Mark");
+		Mark[1] = new Item(2, "Market receives orders from Cook", "Mark");
+		Mark[2] = new Item(2, "Market fulfills Cook's order", "Mark");
+		Mark[3] = new Item(2, "Market can run out of food", "Mark");
+		Mark[4] = new Item(2, "Market does not restock", "Mark");
+		Mark[5] = new Item(2, "Market tells Cook when order cannot be fulfilled", "Mark");
 
 		mark = new GradingPanel("Mark");
 

@@ -167,9 +167,9 @@ public class GradingPanel extends JPanel {
 			}
 			else if (i.getPointMax() < 0 && i.getPointCur() < 0) {
 				if (i.getComment() != null && !i.getComment().isEmpty())
-					errors += ("  + (-" + i.getPointCur() + " points) - "  + i.getDescription() + " - " + i.getComment() + "\n");
+					errors += ("  + (" + i.getPointCur() + " points) - "  + i.getDescription() + " - " + i.getComment() + "\n");
 				else
-					errors += ("  + (-" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
+					errors += ("  + (" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
 			}
 			else if (i.getComment() != null && !i.getComment().isEmpty())
 				errors += "  + " + i.getDescription() + " - " + i.getComment() + "\n";
