@@ -14,7 +14,7 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		setVisible(true);
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		content = new JTabbedPane();
 
 		setUpV2();
@@ -253,7 +253,7 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		Restaurant_v21_gui test = new Restaurant_v21_gui();
-		test.setSize(800, test.getHeight());
+		test.setSize(850, test.getHeight());
 	}
 
 	public void actionPerformed(ActionEvent e) {

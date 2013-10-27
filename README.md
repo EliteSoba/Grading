@@ -11,4 +11,5 @@ Notes
  + Goal for v2.2 edition: Allow parsing of text file to create necessary panels
  + Goal for v2.2 edition: Create Additional Comments panel
  + Goal for next edition: Prompt for comment upon removal of points
+ + Goal for next edition: Work on reset button. Also, perhaps an ID section to identify each grade with a student
  + ~~In the time it took me to write this, my submissions_v2 clone still hasn't completed~~ (Same with 2.1 clone and update)
