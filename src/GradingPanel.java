@@ -71,6 +71,7 @@ public class GradingPanel extends JPanel {
 
 		public void changedUpdate(DocumentEvent arg0) {
 
+			item.setPointCur(getScore());
 		}
 
 		public int getScore() {
