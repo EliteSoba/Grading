@@ -11,7 +11,7 @@ public class GradingPanel extends JPanel {
 	ArrayList<Item> items;
 	JScrollPane content;
 	JPanel main;
-	
+
 	private class GradingButton implements ActionListener, DocumentListener{
 		JButton button;
 		Item item;
@@ -19,7 +19,7 @@ public class GradingPanel extends JPanel {
 		JLabel total;
 		JButton comment;
 		String com;
-		
+
 		public GradingButton(Item i) {
 			item = i;
 			button = new JButton("<html><center>"+item.getDescription()+"</center></html>");
@@ -30,13 +30,13 @@ public class GradingPanel extends JPanel {
 			score.setEditable(false);
 			score.getDocument().addDocumentListener(this);
 			total = new JLabel("/" + i.getPointMax());
-			
+
 			com = "";
 			comment = new JButton("Comment");
 			comment.setForeground(Color.gray);
 			comment.addActionListener(this);
 		}
-		
+
 		public void actionPerformed(ActionEvent arg0) {
 			if (arg0.getSource().equals(button)) {
 				if (button.getForeground().equals(Color.red)) {
@@ -53,7 +53,9 @@ public class GradingPanel extends JPanel {
 				}
 			}
 			else if (arg0.getSource().equals(comment)) {
-				com = JOptionPane.showInputDialog("Comment?:", com);
+				String temp = JOptionPane.showInputDialog("Comment?:", com);
+				if (temp != null)
+					com = temp;
 				if (com != null && !com.isEmpty()) {
 					comment.setForeground(Color.black);
 					comment.setToolTipText(com);
@@ -68,9 +70,9 @@ public class GradingPanel extends JPanel {
 		}
 
 		public void changedUpdate(DocumentEvent arg0) {
-		
+
 		}
-		
+
 		public int getScore() {
 			int sc = 0;
 			try {
@@ -98,12 +100,12 @@ public class GradingPanel extends JPanel {
 		}
 
 		public void removeUpdate(DocumentEvent arg0) {
-			
+
 		}
 	}
-	
+
 	GridBagConstraints c;
-	
+
 	public GradingPanel(String I) {
 		ID = I;
 		main = new JPanel();
@@ -112,12 +114,12 @@ public class GradingPanel extends JPanel {
 		c.gridy = 1;
 		content = new JScrollPane(main);
 		add(content);
-		
+
 		items = new ArrayList<Item>();
-		
-//		content.setPreferredSize(new Dimension(200, 200));
+
+		//		content.setPreferredSize(new Dimension(200, 200));
 	}
-	
+
 	public void addItem(Item i) {
 		Item item = new Item(i.getPointMax(), i.getDescription(), i.getMilestone());
 		GradingButton button = new GradingButton(item);
@@ -138,22 +140,22 @@ public class GradingPanel extends JPanel {
 		main.add(button.comment, c);
 		c.gridy++;
 	}
-	
-//	public void update() {
-//		//remove(content);
-//
-//		main.revalidate();
-//		main.repaint();
-//		//add(content);
-//	}
-	
+
+	//	public void update() {
+	//		//remove(content);
+	//
+	//		main.revalidate();
+	//		main.repaint();
+	//		//add(content);
+	//	}
+
 	public int addItems() {
 		int total = 0;
 		for (int i = 0; i < items.size(); i++)
 			total += items.get(i).getPointCur();
 		return total;
 	}
-	
+
 	public String getErrors() {
 		String errors = "";
 		for (Item i:items) {
@@ -169,14 +171,16 @@ public class GradingPanel extends JPanel {
 				else
 					errors += ("  + (-" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
 			}
+			else if (i.getComment() != null && !i.getComment().isEmpty())
+				errors += i.getDescription() + " - " + i.getComment() + "\n";
 		}
 		return errors;
 	}
-	
+
 	public ArrayList<Item> getItems() {
 		return items;
 	}
-	
+
 	public Item get(int index) {
 		return items.get(index);
 	}
