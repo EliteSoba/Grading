@@ -172,7 +172,7 @@ public class GradingPanel extends JPanel {
 					errors += ("  + (-" + i.getPointCur() + " points) - " + i.getDescription() + "\n");
 			}
 			else if (i.getComment() != null && !i.getComment().isEmpty())
-				errors += i.getDescription() + " - " + i.getComment() + "\n";
+				errors += "  + " + i.getDescription() + " - " + i.getComment() + "\n";
 		}
 		return errors;
 	}
