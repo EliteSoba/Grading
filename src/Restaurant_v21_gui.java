@@ -51,7 +51,7 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		V2[1] = new Item(2, "Multiple Customer, One Waiter", "V2 Requirements");
 		V2[2] = new Item(2, "Load the Tables, One Waiter", "V2 Requirements");
 		V2[3] = new Item(2, "Multiple Customer, Multiple Waiter", "V2 Requirements");
-		V2[4] = new Item(2, "Funcitonal Pause Button", "V2 Requirements");
+		V2[4] = new Item(2, "Functional Pause Button", "V2 Requirements");
 
 		v2 = new GradingPanel("V2 Requirements");
 		populateTab(V2, v2);
