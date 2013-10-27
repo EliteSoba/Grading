@@ -160,7 +160,7 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		for (Item i:Cash)
 			cash.addItem(i);
 
-		content.addTab("Cash", cash);
+		content.addTab("Cashier", cash);
 
 	}
 
