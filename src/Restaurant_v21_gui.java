@@ -178,7 +178,7 @@ public class Restaurant_v21_gui extends JFrame implements ActionListener {
 		for (Item i:Mark)
 			mark.addItem(i);
 
-		content.addTab("Mark", mark);
+		content.addTab("Market", mark);
 
 	}
 
