@@ -21,6 +21,16 @@ public class Item {
 		this.pointMax = pointMax;
 	}
 	public int getPointCur() {
+		if (milestone.equalsIgnoreCase("alterations")) {
+			if (pointCur == 0)
+				return 0;
+			else if (pointCur < 3)
+				return -10;
+			else if (pointCur < 6)
+				return -15;
+			else
+				return -25;
+		}
 		return pointCur;
 	}
 	public void setPointCur(int pointCur) {

@@ -82,9 +82,9 @@ public class GradingPanel extends JPanel {
 			catch (Exception e) {
 				return 0;
 			}
-			if (item.getPointMax() < 0) {
-				if (sc > 0)
-					sc = 0;
+			if (item.getPointMax() <= 0) {
+//				if (sc > 0)
+//					sc = 0;
 				if (sc < item.getPointMax())
 					sc = item.getPointMax();
 				return sc;
@@ -166,7 +166,7 @@ public class GradingPanel extends JPanel {
 				else
 					errors += ("  + (-" + (i.getPointMax()-i.getPointCur()) + ") - " + i.getDescription()) + "\n";
 			}
-			else if (i.getPointMax() < 0 && i.getPointCur() < 0) {
+			else if (i.getPointMax() <= 0 && i.getPointCur() < 0) {
 				if (i.getComment() != null && !i.getComment().isEmpty())
 					errors += ("  + (" + i.getPointCur() + " points) - "  + i.getDescription() + " - " + i.getComment() + "\n");
 				else
