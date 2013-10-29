@@ -1,12 +1,31 @@
+/**
+ *The following class is a data structure used to encapsulate all the necessary data associated with a requirement
+ * @author Tobias
+ *
+ */
 public class Item {
+	/**The maximum amount of points*/
 	int pointMax;
+	/**The current amount of points*/
 	int pointCur;
+	/**What they see*/
 	String description;
+	/**Internal descriptor*/
 	String milestone;
+	/**Comment associated with deduction*/
 	String comment;
+	/**
+	 * Constructor.
+	 * @param point The maximum amount of points for this requirement
+	 * @param desc A description of the requirement for students to see
+	 * @param mile A misnamed internal descriptor used for evaluating other things
+	 */
 	public Item(int point, String desc, String mile) {
 		pointMax = point;
-		pointCur = pointMax > 0 ? pointMax : 0;
+		if (mile.equalsIgnoreCase("EC"))
+			pointCur = 0;
+		else
+			pointCur = pointMax > 0 ? pointMax : 0;
 		description = desc;
 		milestone = mile;
 		comment = "";

@@ -6,20 +6,44 @@ import java.awt.color.ColorSpace;
 import java.awt.event.*;
 import java.util.*;
 
+/**
+ * A panel to separate relevant milestones to aide the grader in organizational matters
+ * @author Tobias
+ *
+ */
 public class GradingPanel extends JPanel {
+	/**The name of the panel*/
 	String ID;
+	/**The list of requirements managed by this panel*/
 	ArrayList<Item> items;
+	/**A nonfunctional scrollpane where all content is added*/
 	JScrollPane content;
+	/**The main panel upon which stuff is added*/
 	JPanel main;
 
+	/**
+	 * A private class holding relevant implementation information about an Item
+	 * @author Tobias
+	 *
+	 */
 	private class GradingButton implements ActionListener, DocumentListener{
+		/**Button to allow editing of project and easy deduction*/
 		JButton button;
+		/**The actual requirement associated with the GradingButton*/
 		Item item;
+		/**An editable score field to allow partial credit*/
 		JTextField score;
+		/**A label to help alert the grader what the maximum is*/
 		JLabel total;
+		/**A button to allow adding a comment to a particular deduction*/
 		JButton comment;
+		/**The comment in question*/
 		String com;
 
+		/**
+		 * Constructor
+		 * @param i The Item being managed
+		 */
 		public GradingButton(Item i) {
 			item = i;
 			button = new JButton("<html><center>"+item.getDescription()+"</center></html>");
@@ -37,6 +61,7 @@ public class GradingPanel extends JPanel {
 			comment.addActionListener(this);
 		}
 
+		/**Manages button presses*/
 		public void actionPerformed(ActionEvent arg0) {
 			if (arg0.getSource().equals(button)) {
 				if (button.getForeground().equals(Color.red)) {
@@ -46,7 +71,10 @@ public class GradingPanel extends JPanel {
 					score.setEditable(false);
 				}
 				else {
-					item.setPointCur(0 < item.getPointMax() ? 0 : item.getPointMax());
+					if (item.getMilestone().equalsIgnoreCase("EC"))
+						item.setPointCur(item.getPointMax());
+					else
+						item.setPointCur(0 < item.getPointMax() ? 0 : item.getPointMax());
 					button.setForeground(Color.red);
 					score.setText(""+item.getPointCur());
 					score.setEditable(true);
@@ -74,6 +102,7 @@ public class GradingPanel extends JPanel {
 			item.setPointCur(getScore());
 		}
 
+		/**Returns the score based on the text field*/
 		public int getScore() {
 			int sc = 0;
 			try {
@@ -107,6 +136,10 @@ public class GradingPanel extends JPanel {
 
 	GridBagConstraints c;
 
+	/**
+	 * Constructor
+	 * @param I The ID of the panel
+	 */
 	public GradingPanel(String I) {
 		ID = I;
 		main = new JPanel();
@@ -121,6 +154,10 @@ public class GradingPanel extends JPanel {
 		//		content.setPreferredSize(new Dimension(200, 200));
 	}
 
+	/**
+	 * Adds an Item and its GradingButton to the panel
+	 * @param i The Item to be added
+	 */
 	public void addItem(Item i) {
 		Item item = new Item(i.getPointMax(), i.getDescription(), i.getMilestone());
 		GradingButton button = new GradingButton(item);
@@ -150,6 +187,10 @@ public class GradingPanel extends JPanel {
 	//		//add(content);
 	//	}
 
+	/**
+	 * Sums up all the points in the panel
+	 * @return The total points awarded in the panel
+	 */
 	public int addItems() {
 		int total = 0;
 		for (int i = 0; i < items.size(); i++)
@@ -157,6 +198,10 @@ public class GradingPanel extends JPanel {
 		return total;
 	}
 
+	/**
+	 * Returns all the comments for the grading report
+	 * @return A multi-line string containing all of the comments associated with each deduction
+	 */
 	public String getErrors() {
 		String errors = "";
 		for (Item i:items) {

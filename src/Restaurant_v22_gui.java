@@ -2,14 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
+/**
+ * A Frame to implement many GradingPanel objects. 
+ * @author Tobias
+ *
+ */
 public class Restaurant_v22_gui extends JFrame implements ActionListener {
 
+	/**All the content in the frame*/
 	JTabbedPane content;
+	/**The button to generate the final report*/
 	JButton gen;
+	/**Text area to contain the final report when gen is pressed*/
 	JTextArea text;
-	GradingPanel git, deduc;
-	GradingPanel A2, B2, C2, D2;
+	/**Every GradingPanel*/
+	GradingPanel git, deduc, A2, B2, C2, D2;
+	
+	/**
+	 * Constructor. Adds all the panels
+	 */
 	public Restaurant_v22_gui() {
 		setVisible(true);
 		setResizable(true);
@@ -32,6 +43,11 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		pack();
 	}
 
+	/**
+	 * A generic function to add an Item list to a panel
+	 * @param items The list of Items to be added
+	 * @param panel The panel upon which these Items should be added
+	 */
 	private void populateTab(Item[] items, GradingPanel panel) {
 		for (Item i:items)
 			panel.addItem(i);
@@ -39,19 +55,23 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		content.addTab(panel.ID, panel);
 	}
 
-
-	
+	/**
+	 * Sets up the v2.2A panel
+	 */
 	private void setUp22A() {
 		Item A[] = new Item[3];
 		A[0] = new Item(10, "One order, fulfilled by the market, bill paid in full", "Market/Cashier");
 		A[1] = new Item(10, "One order, fulfilled by TWO markets, 2 bills paid in full", "Market/Cashier");
-		A[2] = new Item(5, "(EC) One order, fulfilled by the market, bill unable to be paid.<br>You end the scenario by telling us how your cashier makes good on the payment.", "MarketCashier");
+		A[2] = new Item(5, "(EC) One order, fulfilled by the market, bill unable to be paid.<br>You end the scenario by telling us how your cashier makes good on the payment.", "EC");
 	
 		A2 = new GradingPanel("v2.2A");
 		
 		populateTab(A, A2);
 	}
 	
+	/**
+	 * Sets up the v2.2B panel
+	 */
 	private void setUp22B() {
 		Item B[] = new Item[6];
 		B[0] = new Item(10, "Unit Test - One order, fulfilled by the market, bill paid in full", "Unit Test");
@@ -66,6 +86,9 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		populateTab(B, B2);
 	}
 	
+	/**
+	 * Sets up the v2.2C panel
+	 */
 	private void setUp22C() {
 		Item C[] = new Item[1];
 		C[0] = new Item(10, "No ConcurrentModificationErrors", "Threadsafe");
@@ -75,13 +98,16 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		populateTab(C, C2);
 	}
 	
+	/**
+	 * Sets up the v2.2D panel
+	 */
 	private void setUp22D() {
 		Item D[] = new Item[5];
 		D[0] = new Item(10, "Waiting area for new customers", "Animation");
 		D[1] = new Item(5, "Unique waiter home positions", "Animation");
 		D[2] = new Item(5, "Cooking area", "Animation");
 		D[3] = new Item(5, "Plating area", "Animation");
-		D[4] = new Item(5, "(EC) Refrigerator", "Animation");
+		D[4] = new Item(5, "(EC) Refrigerator", "EC");
 		
 		D2 = new GradingPanel("v2.2D");
 		
@@ -89,6 +115,9 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		
 	}
 
+	/**
+	 * Sets up the Git panel
+	 */
 	private void setUpGit() {
 		Item Git[] = new Item[5];
 		Git[0] = new Item(1, "Intermediate commits for the assignment showing progress (at least 5 commits)", "Git");
@@ -105,6 +134,9 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		content.addTab("Git", git);
 	}
 
+	/**
+	 * Sets up the Deductions panel
+	 */
 	private void setUpDedu() {
 		Item Dedu[] = new Item[6];
 		Dedu[0] = new Item(-10, "Not using the agent methodology correctly", "Deductions");
@@ -122,6 +154,9 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		content.addTab("Deductions", deduc);
 	}
 
+	/**
+	 * Sets up the Report generation panel
+	 */
 	private void setUpFinal() {
 		JPanel fin = new JPanel();
 		fin.setLayout(new GridBagLayout());
@@ -138,16 +173,26 @@ public class Restaurant_v22_gui extends JFrame implements ActionListener {
 		content.addTab("Finish", fin);
 	}
 
+	/**
+	 * Returns the total score
+	 * @return The sum of the points on all panels
+	 */
 	public int getTotal() {
 		return A2.addItems() + B2.addItems() + C2.addItems() + D2.addItems()
 				+ git.addItems() + deduc.addItems();
 	}
 
+	/**
+	 * Main. Implements the panel
+	 */
 	public static void main(String[] args) {
 		Restaurant_v22_gui test = new Restaurant_v22_gui();
-		test.setSize(850, test.getHeight());
+		test.setSize(800, 600);
 	}
 
+	/**
+	 * Manages the generate report button press to generate the report. Prints both to text field and to stdout
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(gen)) {
 			String output = "Your Assignment v2.2 Submission Received " + getTotal() + " points. The following error(s) were encountered:\n";
