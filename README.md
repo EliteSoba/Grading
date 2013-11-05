@@ -14,4 +14,5 @@ Notes
  + Goal for next edition: Work on reset button. Also, perhaps an ID section to identify each grade with a student
  + Goal for next edition: Display point totals for each milestone (ex: Milestone 2.2A lost 2 points (18/20))
  + Goal for v2.2 edition: Update dispute date
+ + Goal for next edition: Add box to input first impression grade
  + ~~In the time it took me to write this, my submissions_v2 clone still hasn't completed~~ (Same with 2.1 clone and update)
