@@ -65,7 +65,10 @@ public class GradingPanel extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			if (arg0.getSource().equals(button)) {
 				if (button.getForeground().equals(Color.red)) {
-					item.setPointCur(0 > item.getPointMax() ? 0 : item.getPointMax());
+					if (item.getMilestone().equalsIgnoreCase("EC"))
+						item.setPointCur(0);
+					else
+						item.setPointCur(0 > item.getPointMax() ? 0 : item.getPointMax());
 					button.setForeground(Color.black);
 					score.setText(""+item.getPointCur());
 					score.setEditable(false);
@@ -112,8 +115,8 @@ public class GradingPanel extends JPanel {
 				return 0;
 			}
 			if (item.getPointMax() <= 0) {
-//				if (sc > 0)
-//					sc = 0;
+				//				if (sc > 0)
+				//					sc = 0;
 				if (sc < item.getPointMax())
 					sc = item.getPointMax();
 				return sc;
@@ -205,7 +208,16 @@ public class GradingPanel extends JPanel {
 	public String getErrors() {
 		String errors = "";
 		for (Item i:items) {
-			if (i.getPointMax() > 0 && i.getPointCur() < i.getPointMax()) {
+			if (i.getMilestone().equalsIgnoreCase("EC")) {
+				if (i.getPointCur() != 0) {
+					if (i.getComment() != null && !i.getComment().isEmpty())
+						errors += ("  + (+" + (i.getPointCur()) + ") - " + i.getDescription() + " - " + i.getComment()) + "\n";
+					else
+						errors += ("  + (+" + (i.getPointCur()) + ") - " + i.getDescription()) + "\n";
+				}
+			}
+
+			else if (i.getPointMax() > 0 && i.getPointCur() < i.getPointMax()) {
 				if (i.getComment() != null && !i.getComment().isEmpty())
 					errors += ("  + (-" + (i.getPointMax()-i.getPointCur()) + ") - " + i.getDescription() + " - " + i.getComment()) + "\n";
 				else
